@@ -10,11 +10,16 @@ import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.net.wifi.p2p.WifiP2pManager.*;
+
 import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
 import android.view.View;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,8 +34,12 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class MainActivity extends Activity {
 
@@ -126,12 +135,12 @@ public class MainActivity extends Activity {
                 mManager.connect(mChannel, config, new WifiP2pManager.ActionListener() {
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(getApplicationContext(),"Connected to "+device.deviceName,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Connected to "+device.deviceName,LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(int reason) {
-                        Toast.makeText(getApplicationContext(),"Not connected ",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Not connected ",LENGTH_SHORT).show();
                     }
                 });
             }
@@ -193,17 +202,20 @@ public class MainActivity extends Activity {
             }
         }
     };
-    WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
+    PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
         @Override
         public void onPeersAvailable(WifiP2pDeviceList peerList) {
-            if(!peerList.getDeviceList().equals(peers))
+
+            Collection<WifiP2pDevice> refreshedPeers =  peerList.getDeviceList();
+            if(!refreshedPeers.equals(peers))
             {
                 peers.clear();
-                peers.addAll(peerList.getDeviceList());
-                deviceNameArray=new String[peerList.getDeviceList().size()];
-                deviceArray=new WifiP2pDevice[peerList.getDeviceList().size()];
+                peers.addAll(refreshedPeers);
+
+                deviceNameArray=new String[refreshedPeers.size()];
+                deviceArray=new WifiP2pDevice[refreshedPeers.size()];
                 int index=0;
-                for(WifiP2pDevice device : peerList.getDeviceList())
+                for(WifiP2pDevice device : refreshedPeers)
                 {
                     deviceNameArray[index]=device.deviceName;
                     deviceArray[index]=device;
@@ -213,15 +225,9 @@ public class MainActivity extends Activity {
                 listView.setAdapter(adapter);
 
             }
-            if(peerList.getDeviceList().size()==0)
-            {
-                Toast.makeText(getApplicationContext(),"NO Device Found",Toast.LENGTH_SHORT).show();
-                return ;
-            }
-            else
-            {
-                Toast.makeText(getApplicationContext(),"Found "+peerList.getDeviceList().size()+" Device",Toast.LENGTH_SHORT).show();
-                return ;
+            if (peers.size() == 0) {
+                Toast.makeText(getApplicationContext(),"No device found",Toast.LENGTH_SHORT).show();
+                return;
             }
         }
     };
