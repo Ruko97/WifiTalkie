@@ -6,49 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".ChatActivity">
 
     <TextView
-        android:id="@+id/connectionStatus"
-        android:layout_width="match_parent"
+        android:id="@+id/readMsg"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Connection Status"
+        android:layout_marginTop="31dp"
+        android:layout_gravity="left"
+        android:text="Message"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="italic" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/onOff"
+        <EditText
+            android:id="@+id/writeMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wifi On" />
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_toStartOf="@+id/sendButton" />
 
         <Button
-            android:id="@+id/discover"
+            android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="discover" />
+            android:text="Send" />
     </LinearLayout>
-
-
-
-    <ListView
-        android:id="@+id/peerListView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="25dp"
-        android:background="@android:color/holo_orange_light" />
-
-
-
 
 </LinearLayout>
