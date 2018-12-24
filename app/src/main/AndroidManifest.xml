@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cse2216appproject.wifitalkie">
 
-    <uses-sdk android:minSdkVersion="9"/>
-    <uses-feature android:name="android.hardware.sip.voip"/>
+
     <uses-permission
         android:name="android.permission.ACCESS_COARSE_LOCATION"
         android:required="true" />

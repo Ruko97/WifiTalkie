@@ -1,8 +1,6 @@
 package com.cse2216appproject.wifitalkie;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,9 +8,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.TextView;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -81,8 +77,6 @@ public class ChatActivity extends Activity {
     private class SendReceive implements Runnable{
         private Thread thread;
         private Socket socket;
-        //PrintStream printStream;
-
 
         SendReceive(Socket socket)
         {
@@ -107,12 +101,6 @@ public class ChatActivity extends Activity {
             while (socket!=null)
             {
                 try {
-                    /*if(send==true)
-                    {
-                        System.out.println("now sendData is not null . it is : "+sendData);
-                        printStream.write(sendData.getBytes());
-                        send=false;
-                    }*/
                     bytes =inputStream.read(buffer);
                     if(bytes>0)
                     {
