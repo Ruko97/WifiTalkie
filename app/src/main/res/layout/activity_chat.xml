@@ -7,35 +7,54 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ChatActivity">
-
-    <TextView
-        android:id="@+id/readMsg"
+    <Button
+        android:id="@+id/callButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
-        android:layout_gravity="left"
-        android:text="Message"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="italic" />
-
+        android:text="@string/call"
+        android:layout_gravity="right"/>
+    <Button
+        android:id="@+id/endCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/end_call"
+        android:layout_gravity="right"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/writeMsg"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+        <TextView
+            android:id="@+id/readMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:layout_toStartOf="@+id/sendButton" />
+            android:layout_marginTop="31dp"
+            android:layout_gravity="left"
+            android:text="Message"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-        <Button
-            android:id="@+id/sendButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Send" />
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/writeMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:layout_toStartOf="@+id/sendButton" />
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send" />
+        </LinearLayout>
     </LinearLayout>
+
+
 
 </LinearLayout>

@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.sip.SipManager;
 import android.net.wifi.WifiManager;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
@@ -221,8 +220,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        wifiManager.setWifiEnabled(false);
-        wifiManager.setWifiEnabled(true);
         mReceiver=new WifiDirectBroadcastReceiver(mManager,mChannel,this);
         registerReceiver(mReceiver,mIntentFilter);
     }
