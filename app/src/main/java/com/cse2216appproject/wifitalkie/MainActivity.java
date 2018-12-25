@@ -251,7 +251,7 @@ public class MainActivity extends Activity {
             try {
                 serverSocket = new ServerSocket(8888);
                 socket=serverSocket.accept();
-                Data data=new Data(socket);
+                Data.socket=socket;
                 counter++;
                 startActivity(intent);
             } catch (IOException e) {
@@ -274,7 +274,7 @@ public class MainActivity extends Activity {
         public void run() {
             try {
                 socket=new Socket(hostAdd,8888);
-                Data data=new Data(socket);
+                Data.socket=socket;
                 counter=counter+2;
                 startActivity(intent);
             } catch (IOException e) {

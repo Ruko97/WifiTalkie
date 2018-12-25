@@ -4,8 +4,9 @@
     package="com.cse2216appproject.wifitalkie">
 
 
-
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission
+        android:name="android.permission.RECORD_AUDIO" />
     <uses-permission
         android:name="android.permission.ACCESS_COARSE_LOCATION"
         android:required="true" />
