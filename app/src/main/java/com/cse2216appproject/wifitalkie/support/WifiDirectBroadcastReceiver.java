@@ -33,9 +33,11 @@ public class WifiDirectBroadcastReceiver extends BroadcastReceiver {
             if(state==WifiP2pManager.WIFI_P2P_STATE_ENABLED)
             {
                 Toast.makeText(context,"WiFi is On.",Toast.LENGTH_SHORT).show();
+                mainActivity.getStatusView().setText("Wifi is On");
             }
             else {
                 Toast.makeText(context,"WiFi is Off.",Toast.LENGTH_SHORT).show();
+                mainActivity.getStatusView().setText("Wifi is Off");
             }
         }
         else if(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action))
@@ -60,6 +62,7 @@ public class WifiDirectBroadcastReceiver extends BroadcastReceiver {
             }
             else {
                 Toast.makeText(mainActivity, "Disconnected", Toast.LENGTH_LONG).show();
+                mainActivity.getStatusView().setText("Disconnected");
             }
         }
         else if(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action))

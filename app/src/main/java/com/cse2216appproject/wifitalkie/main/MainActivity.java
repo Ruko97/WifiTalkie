@@ -36,6 +36,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final int PORT_NO = 8888;
+    public static final String PERSON_NAME = "Caller";
 
     private MenuItem onOffMenuItem, discoverMenuItem;
     private ListView peerListView;
@@ -50,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] deviceNames;
     private WifiP2pDevice[] devices;
+
+    private String connectedDeviceName;
+
+    public TextView getStatusView() {
+        return statusView;
+    }
 
     private WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
         @Override
@@ -82,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onConnectionInfoAvailable(WifiP2pInfo wifiP2pInfo) {
             final InetAddress groupOwnerAddress = wifiP2pInfo.groupOwnerAddress;
+
             if (wifiP2pInfo.groupFormed) {
                 if (wifiP2pInfo.isGroupOwner) {
                     statusView.setText("Host");
@@ -150,13 +158,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 final WifiP2pDevice device = devices[i];
+                connectedDeviceName = device.deviceName;
                 WifiP2pConfig config = new WifiP2pConfig();
                 config.deviceAddress = device.deviceAddress;
 
                 wifiP2pManager.connect(wifiP2pChannel, config, new WifiP2pManager.ActionListener() {
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(getApplicationContext(), "Connected to " + device.deviceName,
+                        Toast.makeText(getApplicationContext(), "Connected to " + connectedDeviceName,
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -238,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 socket = serverSocket.accept();
                 Data.socket = socket;
                 Intent intent = new Intent(MainActivity.this, PersonActivity.class);
+                intent.putExtra(PERSON_NAME, connectedDeviceName);
                 startActivity(intent);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -260,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
                 socket = new Socket(hostAddress, MainActivity.PORT_NO);
                 Data.socket = socket;
                 Intent intent = new Intent(MainActivity.this, PersonActivity.class);
+                intent.putExtra(PERSON_NAME, connectedDeviceName);
                 startActivity(intent);
             } catch (IOException e) {
                 e.printStackTrace();

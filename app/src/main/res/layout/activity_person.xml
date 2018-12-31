@@ -2,10 +2,12 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.PersonActivity">
 
+    <!--suppress AndroidDomInspection -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -14,6 +16,7 @@
         app:layout_constraintBottom_toTopOf="@+id/person_name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_sentiment_satisfied"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
