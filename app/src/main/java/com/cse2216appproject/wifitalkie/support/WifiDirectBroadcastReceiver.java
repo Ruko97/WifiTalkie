@@ -1,4 +1,4 @@
-package com.cse2216appproject.wifitalkie;
+package com.cse2216appproject.wifitalkie.support;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,13 +7,15 @@ import android.net.NetworkInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.widget.Toast;
 
+import com.cse2216appproject.wifitalkie.main.MainActivity;
+
 public class WifiDirectBroadcastReceiver extends BroadcastReceiver {
 
     private WifiP2pManager mManager;
     private WifiP2pManager.Channel mChannel;
     private MainActivity mainActivity;
 
-    public WifiDirectBroadcastReceiver(WifiP2pManager mManager, WifiP2pManager.Channel mChannel,MainActivity mainActivity)
+    public WifiDirectBroadcastReceiver(WifiP2pManager mManager, WifiP2pManager.Channel mChannel, MainActivity mainActivity)
     {
         this.mManager=mManager;
         this.mChannel=mChannel;
@@ -40,7 +42,7 @@ public class WifiDirectBroadcastReceiver extends BroadcastReceiver {
         {
             if (mManager!=null)
             {
-                mManager.requestPeers(mChannel,mainActivity.peerListListener);
+                mManager.requestPeers(mChannel,mainActivity.getPeerListListener());
             }
 
         }
@@ -54,10 +56,10 @@ public class WifiDirectBroadcastReceiver extends BroadcastReceiver {
             NetworkInfo networkInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
             if(networkInfo.isConnected())
             {
-                mManager.requestConnectionInfo(mChannel,mainActivity.connectionInfoListener);
+                mManager.requestConnectionInfo(mChannel,mainActivity.getConnectionInfoListener());
             }
             else {
-                mainActivity.connectionStatus.setText("Disconnected ");
+                Toast.makeText(mainActivity, "Disconnected", Toast.LENGTH_LONG).show();
             }
         }
         else if(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action))

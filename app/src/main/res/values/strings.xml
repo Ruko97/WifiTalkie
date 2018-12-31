@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">WifiTalkie</string>
-    <string name="call">Call</string>
-    <string name="send">Send</string>
-    <string name="end_call">End Call</string>
+    <string name="discover">Discover</string>
+    <string name="turn_wifi_on">Turn Wifi On</string>
 </resources>

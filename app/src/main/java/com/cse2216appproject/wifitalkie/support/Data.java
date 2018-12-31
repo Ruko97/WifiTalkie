@@ -1,4 +1,4 @@
-package com.cse2216appproject.wifitalkie;
+package com.cse2216appproject.wifitalkie.support;
 
 import java.io.Serializable;
 import java.net.Socket;
@@ -6,8 +6,5 @@ import java.net.Socket;
 public class Data implements Serializable {
 
     public static Socket socket;
-    Data(Socket socket)
-    {
-        this.socket=socket;
-    }
+
 }
