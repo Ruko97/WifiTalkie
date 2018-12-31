@@ -118,10 +118,10 @@ public class MainActivity extends AppCompatActivity {
         if (wifiManager != null) {
             if (wifiManager.isWifiEnabled()) {
                 onOffMenuItem.setIcon(R.drawable.ic_wifi_on);
-                discoverMenuItem.setEnabled(true);
+                discoverMenuItem.setVisible(true);
             } else {
                 onOffMenuItem.setIcon(R.drawable.ic_wifi_off);
-                discoverMenuItem.setEnabled(false);
+                discoverMenuItem.setVisible(false);
             }
             return true;
         } else {
@@ -177,11 +177,11 @@ public class MainActivity extends AppCompatActivity {
                     if (wifiManager.isWifiEnabled()) {
                         wifiManager.setWifiEnabled(false);
                         onOffMenuItem.setIcon(R.drawable.ic_wifi_off);
-                        discoverMenuItem.setEnabled(false);
+                        discoverMenuItem.setVisible(false);
                     } else {
                         wifiManager.setWifiEnabled(true);
                         onOffMenuItem.setIcon(R.drawable.ic_wifi_on);
-                        discoverMenuItem.setEnabled(true);
+                        discoverMenuItem.setVisible(true);
                     }
                     return true;
                 } else {
